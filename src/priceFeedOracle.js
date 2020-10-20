@@ -64,11 +64,15 @@ module.exports = class PriceFeedOracle {
     let query = Array.isArray(queries) ? queries.sort((a, b) => a.ttl - b.ttl)[queries.length - 1] : queries;
     if (!query || query.response !== "or_Xfbg4g==") return; //return early on no or non-empty response;
 
-    const queryString = String(Crypto.decodeBase64Check(query.query.slice(3))).slice(0, 3);
-    console.log("oracle got query", queryString);
+    console.log(query)
 
-    const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=aeternity&vs_currencies=${queryString}`)
-      .then(res => res.data.aeternity[queryString])
+    // const queryString = String(Crypto.decodeBase64Check(query.query.slice(3))).slice(0, 3);
+    // console.log("oracle got query", queryString);
+
+    // const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=aeternity&vs_currencies=${queryString}`)
+    //   .then(res => res.data.aeternity[queryString])
+
+    const response = false;
 
     if (response) {
       console.log("oracle will respond", response);
